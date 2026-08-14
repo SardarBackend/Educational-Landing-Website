@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\address;
+use App\Models\Order;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
+    // public function __construct()
+    // {
+    //     Auth::loginUsingId(1);
+    // }
         public function address (Request $request){
         $Addresses = $request->user()->Addresses()->get();
         return view('public.profile.profile-address',compact('Addresses'));
@@ -15,7 +26,7 @@ class ProfileController extends Controller
         Alert::success('عملیات موفق آمیز بود','آدرس شما حذف شد');
         return back();
     }
-    public function adresses_post (Request $request , address $id=null){
+    public function adresses_post (Request $request ,  $id=null){
 
         $data =$request->validate([
             'user_id' => 'required|integer|exists:users,id',
@@ -84,15 +95,6 @@ class ProfileController extends Controller
  * Displays the user edit page with SEO and OpenGraph meta tags.
  */
 public function edit_user() {
-    // Set SEO title and description for the edit user page
-    $this->seo()->setTitle('ویرایش اطلاعات')
-        ->setDescription('اینجا میتوانید اطلاعت خود را ویرایش کنید')
-        ->opengraph()->setTitle('ویرایش اطلاعات')
-        // Add image for OpenGraph sharing
-        ->addImage(asset('img/logo.png'), [
-            'height' => 200,
-            'width' => 200,
-        ]);
     // Return the view for the edit user page
     return view('public.profile.profile-personal-info');
 }

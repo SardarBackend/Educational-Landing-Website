@@ -1,6 +1,6 @@
 @extends('base')
 @section('content')
-      <main class="max-w-[1500px] mx-auto px-3 md:px-5 mt-44 md:mt-32">
+  <main class="max-w-[1500px] mx-auto px-3 md:px-5 mt-44 md:mt-32">
     <div class="my-8 lg:my-10 py-5 lg:px-10 flex flex-col md:flex-row gap-5">
       <div class="md:w-4/12 lg:w-3/12">
         <div class="mb-4 rounded-2xl bg-white shadow-box-md">
@@ -121,7 +121,37 @@
                     </div>
                   </details>
                 </li>
-
+                <!-- type seller -->
+                <li>
+                  <details class="group">
+                    <summary class="flex cursor-pointer items-center justify-between rounded-lg pt-3 text-zinc-700">
+                      <span> نوع فروشنده </span>
+                      <span class="shrink-0 transition duration-200 group-open:-rotate-90">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
+                      </span>
+                    </summary>
+                    <div class="mt-2 max-h-60 overflow-y-auto pl-1">
+                      <ul class="space-y-2 rounded-lg" id="colorListFilterDesktop">
+                        <li>
+                          <div class="flex w-full items-center gap-x-2 pr-4">
+                            <input id="color-red" type="checkbox" value="" class="h-4 w-4 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
+                            <label for="color-red" class="flex w-full cursor-pointer items-center py-2 pl-4 font-medium text-zinc-600">
+                              <span>مدکالا</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex w-full items-center gap-x-2 pr-4">
+                            <input id="color-blue" type="checkbox" value="" class="h-4 w-4 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
+                            <label for="color-blue" class="flex w-full cursor-pointer items-center py-2 pl-4 font-medium text-zinc-600">
+                              <span>فروشنده رسمی</span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </details>
+                </li>
                 <!-- available -->
                 <li>
                   <label class="flex cursor-pointer items-center justify-between py-3" for="onlyAvailableDesktop">
@@ -134,7 +164,18 @@
                     </div>
                   </label>
                 </li>
-
+                <!-- special -->
+                <li>
+                  <label class="flex cursor-pointer items-center justify-between py-3" for="onlySpecialDesktop">
+                    <div class="text-zinc-700 dark:text-white">
+                     فقط محصولات دارای گارانتی
+                    </div>
+                    <div class="relative inline-flex cursor-pointer items-center">
+                      <input class="peer sr-only" id="onlySpecialDesktop" type="checkbox">
+                      <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:bg-red-400 peer-checked:after:translate-x-full peer-focus:ring-red-400"></div>
+                    </div>
+                  </label>
+                </li>
               </ul>
             </div>
           </div>
@@ -147,315 +188,520 @@
                 <div class="text-zinc-600 text-sm">
                   مرتب سازی:
                 </div>
-                <div class="text-xs hover:text-red-500 transition cursor-pointer text-red-500">
-                  محبوب ترین
+                <div id="filter-options" class="flex gap-2">
+                <div class="filter-item text-xs hover:text-red-500 transition cursor-pointer text-red-500">
+                    محبوب ترین
                 </div>
-                <div class="text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
-                  پرفروش ترین
+                <div class="filter-item text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
+                    پرفروش ترین
                 </div>
-                <div class="text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
-                  ارزان ترین
+                <div class="filter-item text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
+                    ارزان ترین
                 </div>
-                <div class="text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
-                  گران ترین
+                <div class="filter-item text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
+                    گران ترین
                 </div>
-                <div class="text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
-                  جدیدترین
+                <div class="filter-item text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
+                    جدیدترین
                 </div>
-                <div class="text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
-                  پربازدیدترین
+                <div class="filter-item text-zinc-500 text-xs hover:text-red-400 transition cursor-pointer">
+                    پربازدیدترین
                 </div>
+                </div>
+
+
+
           </div>
         </div>
         <!-- products -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5">
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/2.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l1.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l9.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l3.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l9.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l1.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l3.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l3.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/2.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/2.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l1.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
-          <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
-            <img class="mx-auto" src="./assets/image/products/l9.webp" alt="">
-            <div class="text-zinc-600 text-sm">
-              لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
-            </div>
-            <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
-              <span>
-                4.8
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-            </div>
-            <div class="flex justify-between items-center mt-3">
-              <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
-                10%
-              </div>
-              <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
-                <div>29,800,000</div>
-                <div>تومان</div>
-              </div>
-            </div>
-          </a>
+
+        <div id="productListt" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5 ">
+            @foreach ( $products as $product )
+                <a href="{{route('book' , ['id'=>$product->id])}}" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
+                <img class="mx-auto" src="./assets/image/products/2.webp" alt="">
+                <div class="text-zinc-600 text-sm">
+                    {{ $product->name }}
+                </div>
+                <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
+                    <span>
+                    4.8
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                    @if ($product->discust)
+                    <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
+                    {{$product->discust}}%
+                    </div>
+                    @endif
+                    <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
+                    <div>29,800,000</div>
+                    <div>تومان</div>
+                    </div>
+                </div>
+                </a>
+            @endforeach
+
         </div>
-        <div class="mt-8">
-          <ul class="flex items-center justify-center gap-x-2 md:gap-x-3 h-8 text-sm">
-            <li>
-              <a href="#" class="flex items-center justify-center transition shadow-lg px-3 h-8 ms-0 text-gray-500 bg-white rounded-lg  hover:bg-red-100 hover:text-red-400">
-                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"></path>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center justify-center transition shadow-lg px-3 h-8 text-red-500 bg-red-200 rounded-lg hover:bg-red-100">1</a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center justify-center transition shadow-lg px-3 h-8 text-gray-500 bg-white rounded-lg hover:bg-red-100 hover:text-red-400">2</a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center justify-center transition shadow-lg px-3 h-8 rounded-lg text-gray-500 bg-white  hover:bg-red-100 hover:text-red-400">3</a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center justify-center transition shadow-lg px-3 h-8 text-gray-500 bg-white rounded-lg  hover:bg-red-100 hover:text-red-400">...</a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center justify-center transition shadow-lg px-3 h-8 text-gray-500 bg-white rounded-lg  hover:bg-red-100 hover:text-red-400">8</a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center justify-center transition shadow-lg px-3 h-8 text-gray-500 bg-white rounded-lg  hover:bg-red-100 hover:text-red-400">
-                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"></path>
-                </svg>
-              </a>
-            </li>
-          </ul>
+
+        <div class="mt-8" id="pageinate">
+            <ul class="flex items-center justify-center gap-x-2 md:gap-x-3 h-8 text-sm">
+                {{-- دکمه قبلی --}}
+                @if ($products->onFirstPage())
+                    <li>
+                        <span class="flex items-center justify-center transition shadow-lg px-3 h-8 ms-0 text-gray-300 bg-white rounded-lg">
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"></path>
+                            </svg>
+                        </span>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $products->previousPageUrl() }}" class="flex items-center justify-center transition shadow-lg px-3 h-8 ms-0 text-gray-500 bg-white rounded-lg hover:bg-red-100 hover:text-red-400">
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"></path>
+                            </svg>
+                        </a>
+                    </li>
+                @endif
+
+                {{-- شماره صفحات --}}
+                @foreach ($products->links()->elements[0] as $page => $url)
+                    @if ($page == $products->currentPage())
+                        <li>
+                            <span class="flex items-center justify-center transition shadow-lg px-3 h-8 text-red-500 bg-red-200 rounded-lg">{{ $page }}</span>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ $url }}" class="flex items-center justify-center transition shadow-lg px-3 h-8 text-gray-500 bg-white rounded-lg hover:bg-red-100 hover:text-red-400">{{ $page }}</a>
+                        </li>
+                    @endif
+                @endforeach
+
+                {{-- دکمه بعدی --}}
+                @if ($products->hasMorePages())
+                    <li>
+                        <a href="{{ $products->nextPageUrl() }}" class="flex items-center justify-center transition shadow-lg px-3 h-8 text-gray-500 bg-white rounded-lg hover:bg-red-100 hover:text-red-400">
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"></path>
+                            </svg>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <span class="flex items-center justify-center transition shadow-lg px-3 h-8 text-gray-300 bg-white rounded-lg">
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"></path>
+                            </svg>
+                        </span>
+                    </li>
+                @endif
+            </ul>
         </div>
       </div>
     </div>
   </main>
+  <script>
+  // انتخاب تمام المنت‌های فیلتر
+  const filterItems = document.querySelectorAll('.filter-item');
+
+  // افزودن event listener برای هر گزینه
+  filterItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // حذف کلاس فعال از همه آیتم‌ها
+      filterItems.forEach(el => {
+        el.classList.remove('text-red-500');
+        el.classList.add('text-zinc-500');
+      });
+
+      // افزودن کلاس فعال به گزینه کلیک‌شده
+      item.classList.remove('text-zinc-500');
+      item.classList.add('text-red-500');
+    });
+  });
+</script>
+<script>
+let form =document.querySelector('#formrange');
+let from =document.querySelector('#encode4365gbf265g43d-range-from');
+let to =document.querySelector('#encode4365gbf265g43d-range-to');
+let aaa =document.querySelector('#button');
+let input_from =document.querySelector('#input-from');
+let input_to =document.querySelector('#input-up');
+// console.log(d.innerHTML);
+aaa.addEventListener('click', function(){
+    // console.log(d.innerHTML);
+    let r =from.innerHTML
+    input_from.value = r
+    let g =to.innerHTML
+    input_to.value= g
+    // document.getElementById('input1').value = "1";
+})
+</script>
+<script>
+document.getElementById('onlyAvailableDesktop').addEventListener('click', function () {
+
+
+    const checkbox = document.getElementById('onlyAvailableDesktop').checked;
+    const checkboxw = document.getElementById('onlySpecialDesktop').checked;
+
+    const xhr = new XMLHttpRequest();
+    const HasWarranty = 1;
+    const readyToShip = 1;
+    if (checkboxw && checkbox) {
+        xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}&ready_to_ship=${readyToShip}`, true);
+    }else if(checkbox && !checkboxw){
+        xhr.open('GET', `/filter-by-price?ready_to_ship=${readyToShip}`, true);
+    }
+    else if(!checkbox & checkboxw){
+        xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}`, true);
+    }else{
+        window.location.href = '/products';
+        throw new Error('');
+    }
+
+    // ارسال درخواست
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // پردازش پاسخ سرور
+            const response = JSON.parse(xhr.responseText);
+
+            console.log(response);
+            if (response.status === 'success') {
+                document.getElementById('pageinate').remove();
+
+
+                // document.getElementById('total').innerHTML = response.all + ' کالا';
+                const productList = document.getElementById('productListt');
+
+                productList.innerHTML = ''; // پاک کردن محصولات قدیمی
+
+                response.products.forEach(product => {
+                    productList.innerHTML += `
+                <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
+                <img class="mx-auto" src="./assets/image/products/2.webp" alt="">
+                <div class="text-zinc-600 text-sm">
+                    لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
+                </div>
+                <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
+                    <span>
+                    4.8
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                    <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
+                    10%
+                    </div>
+                    <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
+                    <div>29,800,000</div>
+                    <div>تومان</div>
+                    </div>
+                </div>
+                </a>
+                    `;
+                });
+            } else {
+                console.error('Failed to load products');
+            }
+        } else if (xhr.readyState === 4) {
+            console.error('Error:', xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error('Request failed.');
+    };
+
+    xhr.send();
+});
+
+// تابع برای تولید ستاره‌ها
+function generateStars(stars) {
+    let starsHTML = '';
+    for (let i = 0; i < stars; i++) {
+        starsHTML += '<i class="fa fa-star"></i>';
+    }
+    return starsHTML;
+}
+</script>
+<script>
+document.getElementById('onlySpecialDesktop').addEventListener('click', function () {
+    const xhr = new XMLHttpRequest();
+    const HasWarranty = 1;
+    const readyToShip = 1;
+    const checkbox = document.getElementById('onlyAvailableDesktop').checked;
+    const checkboxw = document.getElementById('onlySpecialDesktop').checked;
+    if (checkboxw && checkbox) {
+        xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}&ready_to_ship=${readyToShip}`, true);
+    }else if(checkboxw && !checkbox){
+        xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}`, true);
+    }
+    else if(!checkboxw && checkbox){
+        xhr.open('GET', `/filter-by-price?ready_to_ship=${readyToShip}`, true);
+    }else{
+        window.location.href = '/products';
+        throw new Error('');
+    }
+    // ارسال درخواست
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // پردازش پاسخ سرور
+            const response = JSON.parse(xhr.responseText);
+
+            console.log(response);
+            if (response.status === 'success') {
+                console.log('ok');
+                // document.getElementById('total').innerHTML = response.all + ' کالا';
+                const productList = document.getElementById('productListt');
+               document.getElementById('pageinate').remove();
+
+                productList.innerHTML = ''; // پاک کردن محصولات قدیمی
+
+                response.products.forEach(product => {
+                    productList.innerHTML += `
+                <a href="" class=" bg-white rounded-xl shadow-box hover:drop-shadow-lg transition px-4 py-4">
+                <img class="mx-auto" src="./assets/image/products/2.webp" alt="">
+                <div class="text-zinc-600 text-sm">
+                    لپ تاپ ایسوس مدل A42 plus مخصوص طراحی
+                </div>
+                <div class="flex items-start justify-end gap-x-1 text-xs text-zinc-500 mt-3">
+                    <span>
+                    4.8
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                    <div class="bg-red-500 rounded-full px-2 py-1 text-white flex items-center gap-x-1 text-xs">
+                    10%
+                    </div>
+                    <div class="flex justify-center gap-x-1 text-sm text-zinc-700">
+                    <div>29,800,000</div>
+                    <div>تومان</div>
+                    </div>
+                </div>
+                </a>
+                    `;
+                });
+            } else {
+                console.error('Failed to load products');
+            }
+        } else if (xhr.readyState === 4) {
+            console.error('Error:', xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error('Request failed.');
+    };
+
+    xhr.send();
+});
+
+// تابع برای تولید ستاره‌ها
+function generateStars(stars) {
+    let starsHTML = '';
+    for (let i = 0; i < stars; i++) {
+        starsHTML += '<i class="fa fa-star"></i>';
+    }
+    return starsHTML;
+}
+</script>
+<script>
+document.getElementById('button').addEventListener('click', function () {
+    // دریافت مقادیر بازه قیمتی
+    const xhr = new XMLHttpRequest();
+    const minPrice = document.getElementById('input-from').value;
+    const maxPrice = document.getElementById('input-up').value;
+    const HasWarranty = 1;
+    const readyToShip = 1;
+    const checkbox = document.getElementById('onlyAvailableDesktop').checked;
+    const checkboxw = document.getElementById('onlySpecialDesktop').checked;
+    if (checkboxw && checkbox) {
+        xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}&ready_to_ship=${readyToShip}&min_price=${minPrice}&max_price=${maxPrice}`, true);
+    }else if(checkboxw && !checkbox){
+        xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}&min_price=${minPrice}&max_price=${maxPrice}`, true);
+    }
+    else if(!checkboxw && checkbox){
+        xhr.open('GET', `/filter-by-price?ready_to_ship=${readyToShip}&min_price=${minPrice}&max_price=${maxPrice}`, true);
+    }else{
+        xhr.open('GET', `/filter-by-price?min_price=${minPrice}&max_price=${maxPrice}`, true);
+    }
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+
+            console.log(response);
+            if (response.status === 'success') {
+                const delElement = document.getElementById('del');
+
+
+                if (delElement) delElement.remove();
+                document.getElementById('total').innerHTML=response.all + 'کالا';
+                const productList = document.getElementById('productListt');
+                console.log(productList);
+                productList.innerHTML = ''; // پاک کردن محصولات قدیمی
+
+                response.products.forEach(product => {
+                    productList.innerHTML += `
+                        <div class="col">
+                            <!-- Product Box -->
+                            <div class="encode4326654321vfb">
+                                <a href="/product-${product.id}">
+                                    <div class="image" style="background-image: url('${product.gallery[0].image}')"></div>
+                                </a>
+                                <div class="details p-3">
+                                    <div class="category">
+                                        <a href="/products?search=${product.brand}">${product.Brand}</a>
+                                    </div>
+                                    <a href="/product-${product.id}">
+                                        <h2>${product.name}</h2>
+                                    </a>
+                                    <div class="encode4365gbf265g43d">${product.price * (100-product.discust)/100} تومان</div>
+                                    <div class="rate">
+                                        ${generateStars(product.stars)}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Product Box -->
+                        </div>
+                    `;
+                });
+            } else {
+                console.error('Failed to load products');
+            }
+        } else if (xhr.readyState === 4) {
+            console.error('Error:', xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error('Request failed.');
+    };
+
+    xhr.send();
+});
+
+// تابع برای تولید ستاره‌ها
+function generateStars(stars) {
+    let starsHTML = '';
+    for (let i = 0; i < stars; i++) {
+        starsHTML += '<i class="fa fa-star"></i>';
+    }
+    return starsHTML;
+}
+
+
+
+</script>
+<script>
+    Array.from(document.getElementsByClassName("cat")).forEach(function(el) {
+            el.addEventListener("click", function(){
+            let cat = el.nextElementSibling.innerHTML
+            const xhr = new XMLHttpRequest();
+
+            const HasWarranty = 1;
+            const readyToShip = 1;
+            const checkbox = document.getElementById('onlyAvailableDesktop').checked;
+            const checkboxw = document.getElementById('onlySpecialDesktop').checked;
+            if (checkboxw && checkbox) {
+                xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}&ready_to_ship=${readyToShip}&cat=${cat}`, true);
+
+            }else if(checkboxw && !checkbox){
+                xhr.open('GET', `/filter-by-price?HasWarranty=${HasWarranty}&cat=${cat}`, true);
+
+            }
+            else if(!checkboxw && checkbox){
+                xhr.open('GET', `/filter-by-price?ready_to_ship=${readyToShip}&cat=${cat}`, true);
+            }else if(el.checked){
+                xhr.open('GET', `/filter-by-price?cat=${cat}`, true);
+
+            }else{
+                window.location.href = '/products';
+                throw new Error('');
+            }
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+
+                    if (response.status === 'success') {
+                        const delElement = document.getElementById('del');
+
+
+                        if (delElement) delElement.remove();
+                        document.getElementById('total').innerHTML=response.all + 'کالا';
+                        const productList = document.getElementById('productListt');
+                        productList.innerHTML = ''; // پاک کردن محصولات قدیمی
+
+                        response.products.forEach(product => {
+                            productList.innerHTML += `
+                                <div class="col">
+                                    <!-- Product Box -->
+                                    <div class="encode4326654321vfb">
+                                        <a href="/product-${product.id}">
+                                            <div class="image" style="background-image: url('${product.gallery[0].image}')"></div>
+                                        </a>
+                                        <div class="details p-3">
+                                            <div class="category">
+                                                <a href="/products?search=${product.brand}">${product.Brand}</a>
+                                            </div>
+                                            <a href="/product-${product.id}">
+                                                <h2>${product.name}</h2>
+                                            </a>
+                                            <div class="encode4365gbf265g43d">${product.price * (100-product.discust)/100} تومان</div>
+                                            <div class="rate">
+                                                ${generateStars(product.stars)}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Product Box -->
+                                </div>
+                            `;
+                        });
+                    } else {
+                        console.error('Failed to load products');
+                    }
+                } else if (xhr.readyState === 4) {
+                    console.error('Error:', xhr.statusText);
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error('Request failed.');
+            };
+
+            xhr.send();
+                });
+            });
+
+            function generateStars(stars) {
+                let starsHTML = '';
+                for (let i = 0; i < stars; i++) {
+                    starsHTML += '<i class="fa fa-star"></i>';
+                }
+                return starsHTML;
+            }
+</script>
+<script>
+// انتخاب تمام المنت‌های فیلتر
+const filterItems = document.querySelectorAll('.filter-item');
+
+// افزودن event listener برای هر گزینه
+filterItems.forEach(item => {
+  item.addEventListener('click', () => {
+    // حذف کلاس فعال از همه آیتم‌ها
+    filterItems.forEach(el => {
+      el.classList.remove('text-red-500');
+      el.classList.add('text-zinc-500');
+    });
+
+    // افزودن کلاس فعال به گزینه کلیک‌شده
+    item.classList.remove('text-zinc-500');
+    item.classList.add('text-red-500');
+  });
+});
+</script>
 @endsection

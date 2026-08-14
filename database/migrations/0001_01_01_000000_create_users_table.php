@@ -49,6 +49,7 @@ return new class extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('name');
+            $table->string('subject');
             $table->longText('content');
             $table->char('email');
             $table->timestamp('failed_at')->useCurrent();

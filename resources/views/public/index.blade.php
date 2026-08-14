@@ -837,6 +837,9 @@
                 <li class="nav-item">
                     <a href="/episode-list" class="nav-link"> پادکست ها</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/episode-list" class="nav-link"> دوره ها</a>
+                </li>
 
                 <li class="nav-item">
                     <a href="#news" class="nav-link">اخبار و رویدادها</a>
@@ -846,17 +849,32 @@
                     <a href="/Achievements" class="nav-link">دستاوردها</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">ارتباط با ما</a>
-                </li>
+
 
             </ul>
 
             <div class="d-flex gap-2">
 
+
+                    
+            @guest
                 <a href="/login" class="btn btn-sm btn-light">
                     ورود
                 </a>
+            @else
+                <a href="/personal" class="d-flex align-items-center">
+                    <img
+                        src="{{ request()->user()->avatar ?? asset('images/default-avatar.png') }}"
+                        alt="{{ request()->user()->name }}"
+                        class="rounded-circle"
+                        width="36"
+                        height="36"
+                        style="object-fit: cover;"
+                    >
+                </a>
+            @endguest
+                    
+
 
                 <a href="/way" class="btn btn-sm text-white" style="background-color: #22c55e;">
                     شروع مسیر رشد
@@ -904,9 +922,10 @@
 
                     <div class="subscribe-form">
 
-                        <form action="#" class="d-flex flex-wrap gap-2">
+                        <form action="{{ route('send_email') }}" method="POST" class="d-flex flex-wrap gap-2">
 
-                            <input type="text"
+                            <input type="email"
+                                    name="email"
                                    class="form-control"
                                    placeholder="ایمیل خود را وارد کنید">
 
@@ -1100,7 +1119,7 @@
                     <span>محیط آموزشی حرفه‌ای و امکانات مدرن</span>
                 </div>
 
-                <a href="#" class="btn text-white me-2" style="background-color: #16a34a;" >
+                <a href="/about-us" class="btn text-white me-2" style="background-color: #16a34a;" >
                     اطلاعات بیشتر
                 </a>
 
@@ -1290,7 +1309,7 @@
 
             <div class="floating-card card-1">
                 <i class="mdi mdi-video-outline"></i>
-                <span>وبینار</span>
+                <a href="/episode-list"><span>وبینار</span></a>
             </div>
 
             <div class="floating-card card-2">
@@ -1300,17 +1319,17 @@
 
             <div class="floating-card card-3">
                 <i class="mdi mdi-book-open-page-variant"></i>
-                <span>کتابچه</span>
+                <a href="/books"><span>کتابچه</span></a>
             </div>
 
             <div class="floating-card card-4">
                 <i class="mdi mdi-podcast"></i>
-                <span>پادکست</span>
+                <a href="/episode-list"><span>پادکست</span></a>
             </div>
 
             <div class="floating-card card-5">
                 <i class="mdi mdi-clipboard-check-outline"></i>
-                <span>چک‌لیست</span>
+                <a href="#"><span>چک‌لیست</span></a>
             </div>
 
             <div class="main-resource-card">
@@ -1327,7 +1346,7 @@
                     همه آنچه برای شروع مسیر یادگیری و پژوهش نیاز دارید.
                 </p>
 
-                <a href="#" class="btn  text-white btn-lg" style="background-color: #16a34a;">
+                <a href="/books" class="btn  text-white btn-lg" style="background-color: #16a34a;">
                     مشاهده منابع
                 </a>
 
@@ -1368,7 +1387,8 @@
 
             <div class="carousel-inner">
 
-                <!-- Slide 1 -->
+                @foreach ($blogs as $blog)
+                    
                 <div class="carousel-item active">
 
                     <div class="featured-news-card">
@@ -1382,14 +1402,14 @@
                             </span>
 
                             <h3 class="fw-bold mt-3">
-                                وبینار روش‌های نوین پژوهش در علوم تربیتی
+                             {{ $blog->title }}
                             </h3>
 
                             <p>
                                 آشنایی با رویکردهای نوین پژوهش و شیوه‌های نگارش مقالات علمی برای دانشجو-معلمان.
                             </p>
 
-                            <a href="#" class="btn btn-light rounded-pill px-4">
+                            <a href="/blog-{{ $blog->id }}" class="btn btn-light rounded-pill px-4">
                                 مشاهده جزئیات
                             </a>
 
@@ -1398,9 +1418,10 @@
                     </div>
 
                 </div>
+                @endforeach
 
                 <!-- Slide 2 -->
-                <div class="carousel-item">
+                {{-- <div class="carousel-item">
 
                     <div class="featured-news-card">
 
@@ -1459,7 +1480,7 @@
 
                     </div>
 
-                </div>
+                </div> --}}
 
             </div>
 
@@ -1567,7 +1588,7 @@
                         <i class="mdi mdi-web"></i>
                         <div>
                             <small>وب‌سایت</small>
-                            <p>www.yourdomain.com</p>
+                            <p>www.cfu.ac.ir</p>
                         </div>
                     </div>
 
@@ -1589,7 +1610,7 @@
 
                 <div class="contact-form-card">
 
-                    <form>
+                    <form method="POST" action="{{ route('Contact_post') }}">
 
                         <div class="row g-4">
 
@@ -1600,6 +1621,7 @@
 
                                 <input
                                     type="text"
+                                    name="name"
                                     class="form-control custom-input"
                                     placeholder="نام خود را وارد کنید">
                             </div>
@@ -1611,6 +1633,7 @@
 
                                 <input
                                     type="email"
+                                    name="email"
                                     class="form-control custom-input"
                                     placeholder="example@email.com">
                             </div>
@@ -1622,6 +1645,7 @@
 
                                 <input
                                     type="text"
+                                    name="subject"
                                     class="form-control custom-input"
                                     placeholder="موضوع پیام">
                             </div>
@@ -1632,6 +1656,7 @@
                                 </label>
 
                                 <textarea
+                                name="content"
                                     rows="5"
                                     class="form-control custom-input"
                                     placeholder="پیام خود را بنویسید..."></textarea>
@@ -1639,7 +1664,7 @@
 
                             <div class="col-12">
 
-                                <button class="btn text-white btn-lg px-4"   style="background-color: #16a34a;">
+                                <button class="btn text-white btn-lg px-4" type="submit"  style="background-color: #16a34a;">
 
                                     <i class="mdi mdi-send me-2"></i>
 
@@ -1662,7 +1687,7 @@
     </div>
 
 </section>
-
+@include('sweetalert::alert')
 
 <footer class="jv-footer">
     <div class="jv-footer__overlay"></div>
@@ -1749,6 +1774,7 @@
 
     </div>
 </footer>
+
 
 {{-- <section class="footer" style="background-image: url(images/footer-bg.png)"><div class="container"><div class="row">
 <div class="col-lg-4"><div class="mb-5">

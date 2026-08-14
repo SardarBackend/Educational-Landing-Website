@@ -270,18 +270,51 @@
             <div class="hidden md:flex items-center gap-8">
 
                 <ul class="flex items-center gap-6 text-gray-700 font-medium">
-                    <li><a href="/" class="hover:text-green-500">خانه</a></li>
-                    <li><a href="#features" class="hover:text-green-500">مسیر رشد</a></li>
-                    <li><a href="#resources" class="hover:text-green-500">منابع آموزشی</a></li>
-                    <li><a href="#news" class="hover:text-green-500">اخبار و رویدادها</a></li>
-                    <li><a href="#achievements" class="hover:text-green-500">دستاوردها</a></li>
-                    <li><a href="#contact" class="hover:text-green-500">ارتباط با ما</a></li>
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">خانه</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/way" class="nav-link">مسیر رشد</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/books" class="nav-link">کتاب ها</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/episode-list" class="nav-link"> پادکست ها</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/course-list" class="nav-link"> دوره ها</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/blogs" class="nav-link">اخبار و رویدادها</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/Achievements" class="nav-link">دستاوردها</a>
+                </li>
+
+
                 </ul>
 
                 <div class="flex items-center gap-3">
-                    <a href="#" class="px-4 py-2 border rounded-lg">
-                        ورود
-                    </a>
+                    @guest
+                        <a href="/login" class="btn btn-sm btn-light">
+                            ورود
+                        </a>
+                    @else
+                        <a href="/profile" class="d-flex align-items-center">
+                            <img
+                                src="{{ request()->user()->avatar ?? asset('images/default-avatar.png') }}"
+                                alt="{{ request()->user()->name }}"
+                                class="rounded-circle"
+                                width="36"
+                                height="36"
+                                style="object-fit: cover;"
+                            >
+                        </a>
+                    @endguest
 
                     <a href="/way" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
                         شروع مسیر رشد

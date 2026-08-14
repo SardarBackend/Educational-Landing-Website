@@ -511,6 +511,8 @@ Page content START -->
 
 				<!-- Course list START -->
 				<div class="row g-4">
+					@foreach ($courses as $course)
+						
 					<!-- Card list START -->
 					<div class="col-12">
 						<div class="card shadow overflow-hidden p-2">
@@ -518,9 +520,12 @@ Page content START -->
 								<div class="col-md-5 overflow-hidden">
 									<img src="courses/assets/images/courses/4by3/06.jpg" class="rounded-2" alt="Card image">
 									<!-- Ribbon -->
+									@if (!! $course->price)
 									<div class="card-img-overlay">
 										<div class="ribbon"><span>رایگان</span></div>
 									</div>
+										
+									@endif
 								</div>
 								<div class="col-md-7">
 									<div class="card-body">
@@ -536,28 +541,28 @@ Page content START -->
 										</div>
 			
 										<!-- Title -->
-										<h5 class="card-title fw-normal"><a href="#">دوره جامع آموزش Angular</a></h5>
+										<h5 class="card-title fw-normal"><a href="#">{{ $course->title }}</a></h5>
 										<p class="text-truncate-2 d-none d-lg-block">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</p>
 			
 										<!-- Info -->
 										<ul class="list-inline">
 											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="far fa-clock text-danger me-2"></i>21ساعت</li>
 											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="fas fa-table text-orange me-2"></i>52 ویدیو</li>
-											<li class="list-inline-item h6 fw-light"><i class="fas fa-signal text-success me-2"></i>مقدماتی</li>
+											<li class="list-inline-item h6 fw-light"><i class="fas fa-signal text-success me-2"></i>{{ $course->Level }}</li>
 										</ul>
 			
 										<!-- Price and avatar -->
 										<div class="d-sm-flex justify-content-sm-between align-items-center">
 											<!-- Avatar -->
-											<div class="d-flex align-items-center">
+											{{-- <div class="d-flex align-items-center">
 												<div class="avatar">
 													<img class="avatar-img rounded-circle" src="courses/assets/images/avatar/06.jpg" alt="avatar">
 												</div>
 												<p class="mb-0 ms-2"><a href="#" class="h6 fw-light">لیلا حاتمی</a></p>
-											</div>
+											</div> --}}
 											<!-- Price -->
 											<div class="mt-3 mt-sm-0">
-												<a href="#" class="btn btn-dark">مشاهده</a>    
+												<a href="/course-{{ $course->id }}" class="btn btn-dark">مشاهده</a>    
 											</div>                  
 										</div>
 									</div>
@@ -566,178 +571,44 @@ Page content START -->
 						</div>
 					</div>
 					<!-- Card list END -->
+					@endforeach
 
-					<!-- Card list START -->
-					<div class="col-12">
-						<div class="card shadow p-2">
-							<div class="row g-0">
-								<div class="col-md-5">
-									<img src="courses/assets/images/courses/4by3/01.jpg" class="rounded-2" alt="Card image">
-								</div>
-								<div class="col-md-7">
-									<div class="card-body">
-										<!-- Badge and rating -->
-										<div class="d-flex justify-content-between align-items-center mb-2">
-											<!-- Badge -->
-											<a href="#" class="badge text-bg-primary mb-2 mb-sm-0">مارکتینگ</a>
-											<!-- Rating and wishlist -->
-											<div>
-												<span class="h6 fw-light me-3"><i class="fas fa-star text-warning me-1"></i>4.5</span>
-												<a href="#" class="h6 fw-light"><i class="far fa-heart"></i></a>
-											</div>
-										</div>
-			
-										<!-- Title -->
-										<h5 class="card-title fw-normal"><a href="#">آموزش ساخت سایت خبری با لاراول</a></h5>
-										<p class="text-truncate">در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</p>
-			
-										<!-- Info -->
-										<ul class="list-inline">
-											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="far fa-clock text-danger me-2"></i>6ساعت</li>
-											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="fas fa-table text-orange me-2"></i>82 ویدیو</li>
-											<li class="list-inline-item h6 fw-light"><i class="fas fa-signal text-success me-2"></i>مبتدی</li>
-										</ul>
-			
-										<!-- Price and avatar -->
-										<div class="d-sm-flex justify-content-sm-between align-items-center">
-											<!-- Avatar -->
-											<div class="d-flex align-items-center">
-												<div class="avatar">
-													<img class="avatar-img rounded-circle" src="courses/assets/images/avatar/10.jpg" alt="avatar">
-												</div>
-												<p class="mb-0 ms-2"><a href="#" class="h6 fw-light">مسعود ناصری</a></p>
-											</div>
-											<!-- Price -->
-											<div class="mt-3 mt-sm-0">
-												<a href="#" class="btn btn-dark">مشاهده</a>    
-											</div>                  
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Card list END -->
-
-					<!-- Card list START -->
-					<div class="col-12">
-						<div class="card shadow p-2">
-							<div class="row g-0">
-								<div class="col-md-5">
-									<img src="courses/assets/images/courses/4by3/11.jpg" class="rounded-2" alt="Card image">
-								</div>
-								<div class="col-md-7">
-									<div class="card-body">
-										<!-- Badge and rating -->
-										<div class="d-flex justify-content-between align-items-center mb-2">
-											<!-- Badge -->
-											<a href="#" class="badge text-bg-primary mb-2 mb-sm-0">طراحی وب</a>
-											<!-- Rating and wishlist -->
-											<div>
-												<span class="h6 fw-light me-3"><i class="fas fa-star text-warning me-1"></i>4.8</span>
-												<a href="#" class="h6 fw-light"><i class="far fa-heart"></i></a>
-											</div>
-										</div>
-			
-										<!-- Title -->
-										<h5 class="card-title fw-normal"><a href="#">آموزش رایگان Blazor WebAssembly</a></h5>
-										<p class="text-truncate">برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد</p>
-			
-										<!-- Info -->
-										<ul class="list-inline">
-											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="far fa-clock text-danger me-2"></i>15دقیقه</li>
-											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="fas fa-table text-orange me-2"></i>72 ویدیو</li>
-											<li class="list-inline-item h6 fw-light"><i class="fas fa-signal text-success me-2"></i>همه سطح</li>
-										</ul>
-			
-										<!-- Price and avatar -->
-										<div class="d-sm-flex justify-content-sm-between align-items-center">
-											<!-- Avatar -->
-											<div class="d-flex align-items-center">
-												<div class="avatar">
-													<img class="avatar-img rounded-circle" src="courses/assets/images/avatar/04.jpg" alt="avatar">
-												</div>
-												<p class="mb-0 ms-2"><a href="#" class="h6 fw-light">پوریا محمدی</a></p>
-											</div>
-											<!-- Price -->
-											<div class="mt-3 mt-sm-0">
-												<a href="#" class="btn btn-dark">مشاهده</a>    
-											</div>                  
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Card list END -->
-
-					<!-- Card list START -->
-					<div class="col-12">
-						<div class="card shadow p-2">
-							<div class="row g-0">
-								<div class="col-md-5">
-									<img src="courses/assets/images/courses/4by3/03.jpg" class="rounded-2" alt="Card image">
-								</div>
-								<div class="col-md-7">
-									<div class="card-body">
-										<!-- Badge and rating -->
-										<div class="d-flex justify-content-between align-items-center mb-2">
-											<!-- Badge -->
-											<a href="#" class="badge text-bg-primary mb-2 mb-sm-0">هنر</a>
-											<!-- Rating and wishlist -->
-											<div>
-												<span class="h6 fw-light me-3"><i class="fas fa-star text-warning me-1"></i>4.0</span>
-												<a href="#" class="h6 fw-light"><i class="far fa-heart"></i></a>
-											</div>
-										</div>
-			
-										<!-- Title -->
-										<h5 class="card-title fw-normal"><a href="#">دوره جامع آموزش Figma</a></h5>
-										<p class="text-truncate-2">برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه</p>
-			
-										<!-- Info -->
-										<ul class="list-inline">
-											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="far fa-clock text-danger me-2"></i>7ساعت</li>
-											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="fas fa-table text-orange me-2"></i>21 دوره</li>
-											<li class="list-inline-item h6 fw-light"><i class="fas fa-signal text-success me-2"></i>همه سطح</li>
-										</ul>
-			
-										<!-- Price and avatar -->
-										<div class="d-sm-flex justify-content-sm-between align-items-center">
-											<!-- Avatar -->
-											<div class="d-flex align-items-center">
-												<div class="avatar">
-													<img class="avatar-img rounded-circle" src="courses/assets/images/avatar/09.jpg" alt="avatar">
-												</div>
-												<p class="mb-0 ms-2"><a href="#" class="h6 fw-light">نیلوفر باقری</a></p>
-											</div>
-											<!-- Price -->
-											<div class="mt-3 mt-sm-0">
-												<a href="#" class="btn btn-dark">مشاهده</a>    
-											</div>                  
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Card list END -->
 				</div>
 				<!-- Course list END -->
 
 				<!-- Pagination START -->
-				<div class="col-12">
-					<nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
-						<ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-							<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-double-right"></i></a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-							<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">..</a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">6</a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
-						</ul>
-					</nav>
-				</div>
+<div class="col-12">
+    @if ($courses->hasPages())
+        <nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
+            <ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+
+                {{-- قبلی --}}
+                <li class="page-item mb-0 {{ $courses->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $courses->previousPageUrl() }}">
+                        <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </li>
+
+                {{-- شماره صفحات --}}
+                @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
+                    <li class="page-item mb-0 {{ $page == $courses->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $url }}">
+                            {{ $page }}
+                        </a>
+                    </li>
+                @endforeach
+
+                {{-- بعدی --}}
+                <li class="page-item mb-0 {{ !$courses->hasMorePages() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $courses->nextPageUrl() }}">
+                        <i class="fas fa-angle-double-left"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    @endif
+</div>
 				<!-- Pagination END -->
 			</div>
 			<!-- Main content END -->
@@ -872,7 +743,7 @@ Page content START -->
 							<!-- Skill level END -->
 	
 							<!-- Language START -->
-							<div class="card card-body shadow p-4 mb-4">
+							{{-- <div class="card card-body shadow p-4 mb-4">
 								<!-- Title -->
 								<h4 class="mb-3 fs-6">فیلتر زبان</h4>
 								<ul class="list-inline mb-0 g-3">
@@ -912,7 +783,7 @@ Page content START -->
 										<label class="btn btn-light btn-primary-soft-check" for="btn-check-8">آلمان</label>
 									</li>
 								</ul>
-							</div>
+							</div> --}}
 							<!-- Language END -->
 						</form><!-- Form End -->
 					</div>

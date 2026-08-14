@@ -15,6 +15,10 @@ class blog extends Model
         return $this->morphMany(Comment::class,'commenttable');
     }
 
+    public function tags(){
+        return $this->morphToMany(Tag::class , 'taggable');
+    }
+
     public function likedByUsers(){
         return $this->belongsToMany(User::class , 'blog_user');
     }
