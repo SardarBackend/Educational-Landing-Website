@@ -40,6 +40,11 @@ class Podcast extends Model
         return $query->where('status', 'published');
     }
 
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
     /**
      * فرمت مدت زمان
      */
@@ -62,6 +67,9 @@ class Podcast extends Model
             : null;
     }
 
+    public function categories(){
+        return $this->morphMany(categories::class , 'categorytable');
+    }
     /**
      * آدرس فایل صوتی
      */

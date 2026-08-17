@@ -81,7 +81,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-xl-3">
-                        <div class="widget">
+                        {{-- <div class="widget">
                             <h4 class="widget-title">گوش کردن توسط : </h4>
                             <div class="listen-on">
                                 <a href="#"><img src="podcast/images/spotify.svg" alt=""></a>
@@ -90,28 +90,24 @@
                                 <a href="#"><img src="podcast/images/itunes.svg" alt=""></a>
                                 <a href="#"><img src="podcast/images/soundcloud.svg" alt=""></a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="widget">
                             <h4 class="widget-title">دسته بندی</h4>
                             <div class="category-list">
-                                <a href="#"><i class="far fa-arrow-left"></i>پادکست بیزینس<span>(۱۰)</span></a>
-                                <a href="#"><i class="far fa-arrow-left"></i>پادکست آموزش<span>(۱۵)</span></a>
-                                <a href="#"><i class="far fa-arrow-left"></i>پادکست لایف استایل<span>(۲۶)</span></a>
-                                <a href="#"><i class="far fa-arrow-left"></i>پادکست سفر<span>(۲۰)</span></a>
-                                <a href="#"><i class="far fa-arrow-left"></i>پادکست تکنولوژي<span>(۳۰)</span></a>
+                                    @foreach ($categories as $item)
+                                        <a href="/podcast-cat-{{ $item->name }}"><i class="far fa-arrow-left"></i>{{ $item->name }}
+                                            {{-- <span>(۱۰)</span> --}}
+                                        </a>
+                                    @endforeach
+
                             </div>
                         </div>
                         <div class="widget">
                             <h4 class="widget-title">تگ های مشهور</h4>
                             <div class="tag-list">
-                                <a href="#">پادکست</a>
-                                <a href="#">بیزینس</a>
-                                <a href="#">میزبان</a>
-                                <a href="#">زنده</a>
-                                <a href="#">استریم</a>
-                                <a href="#">دیجیتال</a>
-                                <a href="#">مدرن</a>
-                                <a href="#">موزیک</a>
+                                @foreach ($tags as $tag)
+                                <a href="#">{{ $tag->name }}</a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -154,7 +150,7 @@
                                     </div>
                                     <div class="meta-item-info">
                                         <h6>مدت زمان</h6>
-                                        <span>۲ ساعت و ۳۰ دقیقه</span>
+                                        <span>  {{ ($podcast->duration)/60 }} دقیقه</span>
                                     </div>
                                 </div>
                                 <div class="meta-item">
@@ -163,7 +159,7 @@
                                     </div>
                                     <div class="meta-item-info">
                                         <h6>تاریخ</h6>
-                                        <span>۲۰ تیز , ۱۴۰۳</span>
+                                        <span>{{ jdate($podcast->updated_at)->format('Y:m:d') }}</span>
                                     </div>
                                 </div>
                                 <div class="meta-item">
@@ -173,103 +169,32 @@
                                 </div>
                             </div>
                             <div class="episode-single-info">
-                                <h3 class="title">ذهنیت در زندگی ما بخش : ۰۱</h3>
+                                <h3 class="title">{{ $podcast->title }}</h3>
+
                                 <p class="mb-20">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی
+                                        {{ $podcast->description }}
                                 </p>
-                                <div class="episode-single-guest">
-                                    <h3 class="title">میهمان ما</h3>
-                                    <div class="row g-4">
-                                        <div class="col-lg-6">
-                                            <div class="guest-item">
-                                                <div class="guest-img">
-                                                    <img src="podcast/images/single05.jpg" alt="">
-                                                </div>
-                                                <div class="guest-content">
-                                                    <h4>محسن دادار</h4>
-                                                    <span>کمدین</span>
-                                                    <p>این یک واقعیت ثابت است که خواننده با آن پرت می شود
-                                                        چیدمان</p>
-                                                    <div class="guest-social">
-                                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                        <a href="#"><i class="fab fa-x-twitter"></i></a>
-                                                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                                                        <a href="#"><i class="fab fa-youtube"></i></a>
-                                                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="guest-item">
-                                                <div class="guest-img">
-                                                    <img src="podcast/images/single07.jpg" alt="">
-                                                </div>
-                                                <div class="guest-content">
-                                                    <h4>رابرت تامسون</h4>
-                                                    <span>کمدین</span>
-                                                    <p>این یک واقعیت ثابت است که خواننده با آن پرت می شود
-                                                        چیدمان</p>
-                                                    <div class="guest-social">
-                                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                        <a href="#"><i class="fab fa-x-twitter"></i></a>
-                                                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                                                        <a href="#"><i class="fab fa-youtube"></i></a>
-                                                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mb-20">
-                                    اما باید برای شما توضیح دهم که چگونه این همه تصور اشتباه تقبیح لذت و
-                                    ستایش درد متولد شد و من به شما گزارش کاملی از سیستم خواهم داد و
-                                    آموزه های واقعی کاشف بزرگ حقیقت را توضیح دهید
-                                    استاد ساز خوشبختی انسان هیچ کس لذت را رد نمی کند، دوست ندارد یا از آن اجتناب نمی کند
-                                    خود، چون لذت است، اما به این دلیل که کسانی که نمی دانند چگونه به دنبال
-                                    لذت به طور منطقی با عواقبی روبرو می شود که بسیار دردناک است. نه دوباره
-                                    آیا کسی هست که دوست داشته باشد یا به دنبال آن باشد یا بخواهد درد خود را بدست آورد؟
-                                    چون درد است، اما به این دلیل که گهگاه شرایطی پیش می آید که در آن زحمت می کشد
-                                    و درد می تواند لذت بزرگی را برای او به ارمغان آورد. برای مثال بی اهمیت
-                                </p>
-                                <div class="episode-single-more-img">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-20">
-                                            <img src="podcast/images/singlee.jpg" alt="">
-                                        </div>
-                                        <div class="col-md-6 mb-20">
-                                            <img src="podcast/images/single02.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mb-20">
-                                    قدرت انتخاب بدون محدودیت است و زمانی که هیچ چیز مانع از توانایی ما نمی شود
-                                    چیزی که ما بیشتر دوست داریم، از هر لذتی باید استقبال کرد و از هر دردی اجتناب کرد. اما
-                                    در شرایط خاص و به دلیل ادعای وظیفه یا تعهدات
-                                    کسب و کار اغلب اتفاق می افتد که لذت ها باید رد شوند و
-                                    مزاحمت پذیرفته شد بنابراین، انسان عاقل همیشه در این مسائل پایبند است
-                                    این اصل انتخاب
-                                </p>
+
+
                                 <div class="my-4">
                                     <div class="mb-3">
-                                        <h3 class="mb-3">چرا شما به آن نیاز دارید</h3>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی</p>
+                                        <h3 class="mb-3"> {{ $podcast->meta_title }}  </h3>
+                                        <p> {{ $podcast->meta_description }}</p>
                                     </div>
-                                    <ul class="episode-single-list">
+                                    {{-- <ul class="episode-single-list">
                                         <li><i class="far fa-check"></i>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</li>
                                         <li><i class="far fa-check"></i>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</li>
                                         <li><i class="far fa-check"></i>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
                                         </li>
                                         <li><i class="far fa-check"></i>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</li>
                                         <li><i class="far fa-check"></i>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
-                                <div class="my-4">
+                                {{-- <div class="my-4">
                                     <h3 class="mb-3">عناصر اصلی که ما ارائه می دهیم</h3>
                                     <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها
                                     </p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

@@ -252,11 +252,11 @@ $colorMap = [
                 <div class="w-10/12 mx-auto md:max-w-32">
                     <img src="./assets/image/products/1.webp" alt="">
                     <div class="flex h-10 w-24 items-center justify-between rounded-lg border border-gray-100 px-2 py-1 mt-5 mx-auto">
-                        <button type="button" data-action="increment" id="button1{{$item['book']->id}}" >
+                        <button type="button" data-action="increment" id="button1{{($item['book'] ?? $item['course'])?->id}}" >
                             <svg class="fill-green-600" xlink:href="#plus" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#4d4d4d" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
                         </button>
-                        <input value="{{$item['quantity']}}" max="{{$item['book']->count}}" readonly  type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm text-zinc-700 outline-none">
-                        <button type="button" data-action="decrement" id="button2{{$item['book']->id}}">
+                        <input value="{{$item['quantity']}}" max="{{($item['book'] ?? $item['course'])?->count}}" readonly  type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm text-zinc-700 outline-none">
+                        <button type="button" data-action="decrement" id="button2{{($item['book'] ?? $item['course'])?->id}}">
                             <svg class="fill-red-600" xlink:href="#minus" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
                         </button>
                 </div>
@@ -264,7 +264,7 @@ $colorMap = [
             <div class="mr-2 md:mr-5 w-full">
                 <!-- title -->
                 <div class="text-xs sm:text-sm text-zinc-700">
-                   {{ $item['book']['name'] }}
+                   {{ ($item['book'] ?? $item['course'])?->title }}
                 </div>
                 <div class="w-full space-y-2 mt-5">
                     <!-- attribute -->
@@ -304,18 +304,18 @@ $colorMap = [
                 </div> --}}
                 <!-- price -->
                 <div class="text-gray-700 pt-4">
-                    <span class="text-xl font-bold">{{ $item['book']['price'] }}</span>
+                    <span class="text-xl font-bold">{{ ($item['book'] ?? $item['course'])?->price }}</span>
                     <span class="text-sm">تومان</span>
-                    <div class="text-xs text-red-400 mt-3">تنها{{ $item['book']['count'] }} عدد در انبار باقی مانده</div>
+                    <div class="text-xs text-red-400 mt-3">تنها{{ ($item['book'] ?? $item['course'])?->count }} عدد در انبار باقی مانده</div>
                 </div>
                 <!-- next buy -->
                 <div class="flex justify-end">
 
-                <form id="fo{{$item['book']->id}}" action="{{route('delete_cart',['book'=>$item['book']])}}" method="post">
+                <form id="fo{{($item['book'] ?? $item['course'])?->id}}" action="{{route('delete_cart',['book'=>($item['book'] ?? $item['course'])])}}" method="post">
                     @method('delete')
                     @csrf
                 </form>
-                <a onclick="document.querySelector('#fo{{$item['book']->id}}').submit()" href="#" id="remove-item" class="flex items-center space-x-3 text-red-600 hover:text-red-500 transition-all duration-300 w-fit">
+                <a onclick="document.querySelector('#fo{{($item['book'] ?? $item['course'])?->id}}').submit()" href="#" id="remove-item" class="flex items-center space-x-3 text-red-600 hover:text-red-500 transition-all duration-300 w-fit">
                     <span class="relative">
                         <i class="fas fa-trash-alt w-6 h-6 text-red-600 transition-all duration-300 transform group-hover:scale-125 group-hover:rotate-180"></i>
                         <div class="absolute inset-0 w-full h-full bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
@@ -355,11 +355,11 @@ $colorMap = [
                 xhr.send();
             }
 
-            document.getElementById('button1{{$item['book']->id}}').addEventListener('click', function () {
+            document.getElementById('button1{{($item['book'] ?? $item['course'])?->id}}').addEventListener('click', function () {
                 updateCart({{$item['id']}}, true);
             });
 
-            document.getElementById('button2{{$item['book']->id}}').addEventListener('click', function () {
+            document.getElementById('button2{{($item['book'] ?? $item['course'])?->id}}').addEventListener('click', function () {
                 updateCart({{$item['id']}}, false);
             });
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Routing\RouteGroup;
@@ -19,10 +20,14 @@ Route::get('/faq' , [HomeController::class, 'faq'])->name('faq');
 Route::get('/login',[AuthController::class , 'login'])->name('login');
 Route::post('/login',[AuthController::class , 'login_post'])->name('login_post');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
+Route::get('/role',[AuthController::class,'role'])->name('role')->middleware('auth');
+Route::post('/password',[AuthController::class,'password'])->name('password')->middleware('guest');
+Route::post('/verify_confrim',[AuthController::class,'verify_confrim'])->name('verify_confrim')->middleware('guest');
 
 
 Route::get('episode-list',[PodcastController::class , 'episode_list']);
-Route::get('episode-single',[PodcastController::class , 'episode_single']);
+Route::get('episode-single-{id}',[PodcastController::class , 'episode_single']);
+Route::get('/podcast-cat-{category}',[PodcastController::class , 'category_podcasts']);
 Route::get('about-us',[HomeController::class, 'about']);
 
 Route::get('course-list',[HomeController::class, 'course_list']);
@@ -62,10 +67,49 @@ Route::get('Checkout',[CartController::class , 'Checkout']);
 Route::get('Checkout_complete',[CartController::class , 'Checkout_complete']);
 
 
-Route::post('/add_to_card{book}',[\App\Http\Controllers\CartController::class,'addToCart'])->name('add_to_card');
+Route::post('/addBookToCart{book}',[\App\Http\Controllers\CartController::class,'addBookToCart'])->name('addBookToCart');
+Route::post('/addCourseToCart{course}',[\App\Http\Controllers\CartController::class,'addCourseToCart'])->name('addCourseToCart');
 Route::delete('/delete_cart{book}',[\App\Http\Controllers\CartController::class,'deleteFromCart'])->name('delete_cart');
 Route::post('/delete_cartAll',[\App\Http\Controllers\CartController::class,'deleteAll'])->name('delete_cart_All');
 Route::get('/cart',[\App\Http\Controllers\CartController::class,'Cart'])->name('cart');
+
+
+
+Route::get('/instructor-dashboard', [InstructorController::class, 'dashboard'])
+    ->name('instructor.dashboard');
+
+Route::get('/instructor-create-course', [InstructorController::class, 'createCourse'])
+    ->name('instructor.create-course');
+
+Route::get('/instructor-delete-account', [InstructorController::class, 'deleteAccount'])
+    ->name('instructor.delete-account');
+
+Route::get('/instructor-earning', [InstructorController::class, 'earning'])
+    ->name('instructor.earning');
+
+Route::get('/instructor-edit-profile', [InstructorController::class, 'editProfile'])
+    ->name('instructor.edit-profile');
+
+Route::get('/instructor-list', [InstructorController::class, 'list'])
+    ->name('instructor.list');
+
+Route::get('/instructor-manage-course', [InstructorController::class, 'manageCourse'])
+    ->name('instructor.manage-course');
+
+Route::get('/instructor-order', [InstructorController::class, 'order'])
+    ->name('instructor.order');
+
+Route::get('/instructor-payout', [InstructorController::class, 'payout'])
+    ->name('instructor.payout');
+
+Route::get('/instructor-review', [InstructorController::class, 'review'])
+    ->name('instructor.review');
+
+// Route::get('/instructor-single', [InstructorController::class, 'single'])
+//     ->name('instructor.single');
+
+Route::get('/instructor-student-list', [InstructorController::class, 'studentList'])
+    ->name('instructor.student-list');
 
 
 Route::get('/checkout',[\App\Http\Controllers\PaymentController::class,'checkout'])->name('checkout')->middleware('auth');

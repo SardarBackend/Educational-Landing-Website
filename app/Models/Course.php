@@ -40,6 +40,15 @@ class Course extends Model
     |--------------------------------------------------------------------------
     */
 
+        public function chapters()
+    {
+        return $this->hasMany(Chapter::class);
+    }
+
+    public function categories(){
+        return $this->morphMany(categories::class , 'categorytable');
+    }
+
     public function teacher()
     {
         return $this->belongsTo(User::class, 'teacher_id');
@@ -55,6 +64,23 @@ class Course extends Model
     {
         return $this->discount_price ?? $this->price;
     }
+
+
+    // Course.php
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+
+// Course.php
+public function favoritedBy()
+{
+    return $this->belongsToMany(
+        User::class,
+        'favorite_courses'
+    )->withTimestamps();
+}
 
     /*
     |--------------------------------------------------------------------------
@@ -75,4 +101,13 @@ class Course extends Model
     {
         return $this->morphMany(Question::class, 'questionable');
     }
+
+    public function instructor()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+    public function tags(){
+        return $this->morphToMany(Tag::class , 'taggable');
+    }
+
 }

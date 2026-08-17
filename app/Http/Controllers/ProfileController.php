@@ -66,9 +66,9 @@ class ProfileController extends Controller
 
     public function favorites (Request $request){
         $id=$request->user()->id;
-        $favorite=User::find($id);
+        $user=User::find($id);
 
-        $favorites=$favorite->favorite()->get();
+        $favorites=$user->favorite()->get();
 
 
 

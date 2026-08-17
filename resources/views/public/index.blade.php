@@ -838,7 +838,7 @@
                     <a href="/episode-list" class="nav-link"> پادکست ها</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/episode-list" class="nav-link"> دوره ها</a>
+                    <a href="/course-list" class="nav-link"> دوره ها</a>
                 </li>
 
                 <li class="nav-item">

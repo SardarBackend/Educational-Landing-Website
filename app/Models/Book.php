@@ -9,6 +9,9 @@ class Book extends Model
 {
     public $timestamps = false;
 
+    public function categories(){
+        return $this->morphMany(categories::class , 'categorytable');
+    }
     public function gallery(){
         return $this->hasMany(gallery::class);
     }

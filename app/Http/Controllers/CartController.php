@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Cart\Cart;
 use App\Models\Book;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -23,8 +24,9 @@ class CartController extends Controller
                 * $item['quantity']
             );
         }
-
+        // session()->forget('cart');
         $FinalPrice = $totalPrice - $totalDiscust;
+        // dd($cart);
         if (count($cart)) {
             // Return the view for the cart page
             return view('public.Cart' , compact('cart','totalPrice','FinalPrice','totalDiscust'));
@@ -32,7 +34,7 @@ class CartController extends Controller
         return view('public.cart-empty');    
         }
 
-    public function addToCart(Book $book, Request $request){
+    public function addBookToCart(Book $book, Request $request){
         // Check if the product is already in the cart
         if (Cart::has($book)) {
             // Update quantity if the product is already in the cart
@@ -44,9 +46,36 @@ class CartController extends Controller
                 [
                     'quantity' => $request->quantity,
                     'price' => $book->price,
-                    'color' => $request->color
+                    'color' => $request->color,
+                    'type' => Book::class
                 ],
                 $book
+            );
+
+            // Show success alert after adding the product
+
+            // Redirect back to the previous page
+        Alert::success('عملیات موفق آمیز بود',' محصول به سبد خرید شما اضافه شد');        }
+        return back();
+    }
+
+    public function addCourseToCart(Course $Course, Request $request){
+        // Check if the product is already in the cart
+        if (Cart::has($Course)) {
+            // Update quantity if the product is already in the cart
+            Cart::update($Course, $request->quantity);
+            
+            } else {
+                // Add the product to the cart with its quantity, price, and color
+                Cart::put(
+                [
+                    'quantity' => $request->quantity,
+                    'price' => $Course->price,
+                    'color' => $request->color,
+                    'type' => Course::class
+
+                ],
+                $Course
             );
 
             // Show success alert after adding the product

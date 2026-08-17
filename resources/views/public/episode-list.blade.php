@@ -96,22 +96,11 @@
                             <div class="podcast-widget">
                                 <h4 class="widget-title">دسته بندی</h4>
                                 <ul class="category-list">
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i>پادکست
-                                            بیزینس<span>(۱۵)</span></a></li>
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i>پادکست
-                                            آموزش<span>(۲۰)</span></a></li>
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i> پادکست
-                                            لایف استایل<span>(۰۵)</span></a></li>
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i>پادکست
-                                            سفر<span>(۰۷)</span></a></li>
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i>پادکست
-                                            تکنولوژي<span>(۰۹)</span></a></li>
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i>پادکست
-                                            پزشکی<span>(۲۵)</span></a></li>
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i>پادکست
-                                            کمدی<span>(۲۱)</span></a></li>
-                                    <li><a href="#"><i class="far fa-microphone-lines"></i>پادکست
-                                            رشد زندگی<span>(۱۲)</span></a></li>
+                                    @foreach ($categories as $item)
+                                        
+                                    <li><a href="/podcast-cat-{{ $item->name }}"><i class="far fa-microphone-lines"></i>پادکست
+                                            {{ $item->name }}<span>(۱۵)</span></a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="podcast-widget">
@@ -143,7 +132,7 @@
                         <div class="podcast-sort">
                             <div class="row align-items-center">
                                 <div class="col-md-6 col-lg-6 col-xl-8">
-                                    <div class="podcast-sort-show">نمایش ۱-۱۵ از ۵۰ نتیجه</div>
+                                    <div class="podcast-sort-show">نمایش ۱-۱۵ از {{ $podcasts->total() }} نتیجه</div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-xl-4">
                                     <div class="podcast-sort-box">
@@ -158,67 +147,117 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="episode-list">
-                            <div class="row g-4">
-                                @foreach ($podcasts as $podcast )
-                                
-                                <div class="col-md-12">
-                                    <div class="episode-item">
-                                        <div class="episode-img">
-                                            <a href="#" class="episode-favourite"><i class="far fa-heart"></i></a>
-                                            <img src="podcast/images/01_1.jpg" alt="">
-                                        </div>
-                                        <div class="episode-content">
-                                            <h4><a href="#">ذهنیت در زندگی ما بخش: ۱</a></h4>
-                                            <div class="episode-meta">
-                                                <ul>
-                                                    <li><i class="far fa-podcast"></i> اپیسود ۱۸</li>
-                                                    <li><i class="far fa-calendar-alt"></i>۲۰ تیر , ۱۴۰۳</li>
-                                                </ul>
-                                            </div>
-                                            <p>
-                                                انواع مختلفی از معابر موجود است اما اکثریت آن ها را دارند
-                                                با تزریق دچار تغییر به شکلی شد
-                                                کلمات تصادفی طنز که حتی اندکی هم باورپذیر به نظر نمی رسند.
-                                            </p>
-                                            <div class="episode-bottom">
-                                                <div class="episode-host">
-                                                    <h6><i class="far fa-user-tie-hair"></i> توسط نیکی کریمی</h6>
-                                                </div>
-                                                <div class="episode-player">
-                                                    <button type="button" class="player-btn amplitude-play-pause"
-                                                        data-song-add="8">
-                                                        <i class="fas fa-play"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
+<div class="episode-list">
+    <div class="row g-4">
+        @foreach ($podcasts as $podcast)
+
+        <div class="col-md-12">
+            <div class="episode-item">
+                <div class="episode-img">
+                    <a href="/episode-single-{{ $podcast->id }}" class="episode-favourite">
+                        <i class="far fa-heart"></i>
+                    </a>
+
+                    <img src="{{ asset($podcast->cover_image) }}" alt="{{ $podcast->title }}">
+                </div>
+
+                <div class="episode-content">
+                    <h4>
+                        <a href="/episode-single-{{ $podcast->id }}">
+                            {{ $podcast->title }}
+                        </a>
+                    </h4>
+
+                    <div class="episode-meta">
+                        <ul>
+                            <li>
+                                <i class="far fa-podcast"></i>
+                                {{ $loop->iteration }}
+                            </li>
+
+                            <li>
+                                <i class="far fa-calendar-alt"></i>
+                                {{ $podcast->published_at }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        {{ Str::limit($podcast->description, 150) }}
+                    </p>
+
+                    <div class="episode-bottom">
+                        <div class="episode-host">
+                            <h6>
+                                <i class="far fa-headphones"></i>
+                                {{ gmdate('i:s', $podcast->duration) }}
+                            </h6>
                         </div>
 
+                        <div class="episode-player">
+                            <audio controls>
+                                <source src="{{ asset($podcast->audio_file) }}" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @endforeach
+    </div>
+</div>
+
+                        @if ($podcasts->hasPages())
                         <div class="pagination-area mt-50">
                             <div aria-label="Page navigation example">
                                 <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+
+                                    {{-- صفحه قبل --}}
+                                    <li class="page-item {{ $podcasts->onFirstPage() ? 'disabled' : '' }}">
+                                        <a class="page-link"
+                                        href="{{ $podcasts->onFirstPage() ? '#' : $podcasts->previousPageUrl() }}"
+                                        aria-label="Previous">
+                                            <span aria-hidden="true">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
                                         </a>
                                     </li>
-                                    <li class="page-item active"><a class="page-link" href="#">۱</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">۲</a></li>
-                                    <li class="page-item"><span class="page-link">...</span></li>
-                                    <li class="page-item"><a class="page-link" href="#">۱۰</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+
+                                    {{-- شماره صفحات --}}
+                                    @foreach ($podcasts->linkCollection()->elements as $element)
+                                        @if (is_string($element))
+                                            <li class="page-item">
+                                                <span class="page-link">{{ $element }}</span>
+                                            </li>
+                                        @endif
+
+                                        @if (is_array($element))
+                                            @foreach ($element as $page => $url)
+                                                <li class="page-item {{ $page == $podcasts->currentPage() ? 'active' : '' }}">
+                                                    <a class="page-link" href="{{ $url }}">
+                                                        {{ $page }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+
+                                    {{-- صفحه بعد --}}
+                                    <li class="page-item {{ !$podcasts->hasMorePages() ? 'disabled' : '' }}">
+                                        <a class="page-link"
+                                        href="{{ $podcasts->hasMorePages() ? $podcasts->nextPageUrl() : '#' }}"
+                                        aria-label="Next">
+                                            <span aria-hidden="true">
+                                                <i class="fas fa-arrow-left"></i>
+                                            </span>
                                         </a>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
+                        @endif
 
                     </div>
                 </div>

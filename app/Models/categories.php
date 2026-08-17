@@ -4,13 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class categories extends Model
 {
-        protected  $fillable = [
-        
-        'name'
-    ];
-    public function taggables()
+    public function categorytable()
     {
         return $this->morphTo();
     }

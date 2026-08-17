@@ -8,6 +8,14 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::table('courses', function (Blueprint $table) {
+                $table->foreignId('user_id')
+                    ->default(1);
+                $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->cascadeOnDelete();
+        });
         // Schema::create('courses', function (Blueprint $table) {
         //     $table->id();
 
@@ -59,34 +67,47 @@ return new class extends Migration
         //     $table->index('status');
         //     $table->index('level');
         // });
-        Schema::create('questions', function (Blueprint $table) {
-            $table->id();
 
-            $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnDelete();
 
-            $table->foreignId('seller_id')
-                ->nullable()
-                ->constrained('users')
-                ->nullOnDelete();
+            // Schema::table('activecodes', function (Blueprint $table) {
+            //     $table->timestamps();
+            // });
 
-            $table->morphs('questionable');
-
-            $table->longText('question');
-            $table->longText('answer')->nullable();
-            $table->foreignId('parent_id')
-                ->nullable()
-                ->constrained('questions')
-                ->cascadeOnDelete();
-            $table->unsignedBigInteger('score')->default(0);
-
-            $table->timestamps();
-        });
     }
+        // public function down(): void
+        // {
+        //     Schema::table('activecodes', function (Blueprint $table) {
+        //         $table->dropTimestamps();
+        //     });
+        // }
+    //     Schema::create('questions', function (Blueprint $table) {
+    //         $table->id();
 
-    public function down(): void
-    {
-        Schema::dropIfExists('courses');
-    }
+    //         $table->foreignId('user_id')
+    //             ->constrained()
+    //             ->cascadeOnDelete();
+
+    //         $table->foreignId('seller_id')
+    //             ->nullable()
+    //             ->constrained('users')
+    //             ->nullOnDelete();
+
+    //         $table->morphs('questionable');
+
+    //         $table->longText('question');
+    //         $table->longText('answer')->nullable();
+    //         $table->foreignId('parent_id')
+    //             ->nullable()
+    //             ->constrained('questions')
+    //             ->cascadeOnDelete();
+    //         $table->unsignedBigInteger('score')->default(0);
+
+    //         $table->timestamps();
+    //     });
+    // }
+
+    // public function down(): void
+    // {
+    //     Schema::dropIfExists('courses');
+    // }
 };

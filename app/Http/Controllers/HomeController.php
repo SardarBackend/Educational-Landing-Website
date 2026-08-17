@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\blog;
 use App\Models\blogcategory;
 use App\Models\Book;
+use App\Models\categories;
 use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Course;
@@ -58,12 +59,7 @@ class HomeController extends Controller
         : [];
 
     // Cache blog categories for 1 hour
-    $blogCategories = blogcategory::all();
-
-
-
-
-
+    $blogCategories = categories::where('categorytable_type',blog::class)->get();
 
     // Return the blog view with all the data
     return view('public.blogs', compact(
@@ -143,11 +139,11 @@ class HomeController extends Controller
     }
 
     public function course_single(Request $request , int $id)  {
-        $Course=Course::findOrFail($id);
+        $Course=Course::with(['chapters.videos'])->findOrFail($id);
         $comments=$Course->comment()->get();
         $questions =$Course->questions()->with(['user','children.user'])->get();
-
-        return view('public.course-detail',compact('Course','comments','questions'));
+        $tags=$Course->tags()->get();
+        return view('public.course-detail',compact('Course','comments','questions','tags'));
     }
     public function Achievements()  {
         return view('public.Achievements');

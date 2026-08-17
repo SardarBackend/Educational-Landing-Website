@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Morilog\Jalali\Jalalian;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password','Approved'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -99,9 +100,9 @@ class User extends Authenticatable
     //     return $this->belongsToMany(permission::class);
     // }
 
-    public function role (){
-        return $this->belongsToMany(role::class);
-    }
+    // public function role (){
+    //     return $this->belongsToMany(role::class);
+    // }
 
     // public function hasRole($role){
     //     return !! $role->intersect($this->roles)->all();
@@ -137,12 +138,32 @@ class User extends Authenticatable
         return $this->belongsToMany(blog::class , 'blog_user');
     }
 
-    public function products() {
-        return $this->hasMany(Product::class);
-    }
+    // public function products() {
+    //     return $this->hasMany(::class);
+    // }
 
     public function messages(){
         return $this->hasMany(message::class);
     }
+
+// User.php
+public function courses()
+{
+    return $this->belongsToMany(Course::class)
+                ->withTimestamps();
+}
+// User.php
+public function favoriteCourses()
+{
+    return $this->belongsToMany(
+        Course::class,
+        'favorite_courses'
+    )->withTimestamps();
+}
+// User.php
+public function my_courses()
+{
+    return $this->hasMany(Course::class);
+}
 
 }

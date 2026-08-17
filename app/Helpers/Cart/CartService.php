@@ -114,7 +114,7 @@ public function all()
             ? $this->cart->where('subject_id', $key->id)
                          ->where('subject_type', get_class($key))
                          ->isNotEmpty()
-            : $this->cart->firstWhere('id', $key) !== null;
+            : $this->cart->where('type',$key::class)->firstWhere('id', $key) !== null;
     }
 
     /**
