@@ -382,6 +382,7 @@ document.getElementById('mobile-menu-btn').addEventListener('click', () => {
 
 
 
+
 <footer class="jv-footer">
     <div class="jv-footer__overlay"></div>
 
@@ -392,13 +393,13 @@ document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             <!-- About -->
             <div class="jv-footer__brand">
 
-                <a href="#" class="jv-footer__logo">
-                    <img src="images/logo-light.png" alt="Logo">
+                <a href="{{ route('index') }}" class="jv-footer__logo">
+                    <img src="images/logo-light.png" alt="مشیر رشد دانشجو معلم">
                 </a>
 
                 <p class="jv-footer__description">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                    با استفاده از طراحان گرافیک است.
+                    مشیر رشد دانشجو معلم، بستری برای آموزش، رشد و توانمندسازی دانشجو معلمان
+                    در مسیر یادگیری، توسعه مهارت‌ها و موفقیت حرفه‌ای.
                 </p>
 
                 <div class="jv-footer__socials">
@@ -427,25 +428,26 @@ document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             <div class="jv-footer__links">
 
                 <div class="jv-footer__column">
-                    <h3 class="jv-footer__title">درباره ما</h3>
+                    <h3 class="jv-footer__title">دسترسی سریع</h3>
 
                     <ul>
-                        <li><a href="#">آثار</a></li>
-                        <li><a href="#">استراتژی</a></li>
-                        <li><a href="#">منتشر شده</a></li>
-                        <li><a href="#">مطبوعات</a></li>
-                        <li><a href="#">ماموریت</a></li>
+                        <li><a href="{{ route('index') }}">صفحه اصلی</a></li>
+                        <li><a href="/course-list">دوره ها</a></li>
+                        <li><a href="/episode-list">پادکست ها</a></li>
+                        <li><a href="{{ route('blogs') }}">مقالات</a></li>
+                        <li><a href="/books">کتاب ها</a></li>
                     </ul>
                 </div>
 
                 <div class="jv-footer__column">
-                    <h3 class="jv-footer__title">مشتریان</h3>
+                    <h3 class="jv-footer__title">مشیر رشد</h3>
 
                     <ul>
-                        <li><a href="#">تجارت</a></li>
-                        <li><a href="#">محبوب</a></li>
-                        <li><a href="#">مشتریان</a></li>
-                        <li><a href="#">امکانات</a></li>
+                        <li><a href="/about-us">درباره ما</a></li>
+                        <li><a href="/way">مسیر رشد</a></li>
+                        <li><a href="/Achievements">دستاوردها</a></li>
+                        <li><a href="/instructor-list">مدرسین</a></li>
+                        <li><a href="{{ route('faq') }}">سوالات متداول</a></li>
                     </ul>
                 </div>
 
@@ -453,11 +455,11 @@ document.getElementById('mobile-menu-btn').addEventListener('click', () => {
                     <h3 class="jv-footer__title">پشتیبانی</h3>
 
                     <ul>
-                        <li><a href="#">توسعه‌دهندگان</a></li>
-                        <li><a href="#">پشتیبانی</a></li>
-                        <li><a href="#">خدمات مشتری</a></li>
-                        <li><a href="#">شروع کنید</a></li>
-                        <li><a href="#">راهنما</a></li>
+                        <li><a href="/about-us">ارتباط با ما</a></li>
+                        <li><a href="{{ route('faq') }}">راهنما و سوالات متداول</a></li>
+                        <li><a href="{{ route('cart') }}">سبد خرید</a></li>
+                        <li><a href="{{ route('login') }}">ورود به حساب کاربری</a></li>
+                        <li><a href="/course-list">شروع یادگیری</a></li>
                     </ul>
                 </div>
 
@@ -467,6 +469,8 @@ document.getElementById('mobile-menu-btn').addEventListener('click', () => {
 
     </div>
 </footer>
+
+
 
     {{-- <div class="main-player">
         <div class="audio-player">

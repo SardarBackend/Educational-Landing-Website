@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\categories;
 use App\Models\Comment;
 use App\Models\Course;
 use App\Models\User;
@@ -17,7 +18,24 @@ class InstructorController extends Controller
 
     public function createCourse()
     {
-        return view('public.instructor.instructor-create-course');
+        $categories =categories::where('categorytable_type',Course::class)->get();
+        return view('public.instructor.instructor-create-course',compact('categories'));
+    }
+
+    public function storeCourse(Request $request)
+    {
+        $request->validate([
+            'title' => ['required','string'],
+            'slug ' => ['required','string'],
+            'short_description' => ['required','string'],
+            'level' => ['required'],
+            'duration_minutes' => ['required'],
+            'videos_number' => ['required'],
+            'price' => ['required'],
+            'description' => ['required'],
+            'discount_price' => ['required'],
+        ]);
+        return ;
     }
 
     public function deleteAccount()
@@ -37,7 +55,8 @@ class InstructorController extends Controller
 
     public function list()
     {
-        return view('public.instructor.instructor-list');
+        $teachers =User::where('is_teacher' , 1)->paginate(8);
+        return view('public.instructor.instructor-list',compact('teachers'));
     }
 
     public function manageCourse(Request $request)

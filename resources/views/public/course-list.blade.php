@@ -85,7 +85,7 @@ Page content START -->
 			<div class="col-xl-9 col-xxl-8">
 
 				<!-- Course list START -->
-				<div class="row g-4">
+				<div class="row g-4"  id="courses-list">
 					@foreach ($courses as $course)
 						
 					<!-- Card list START -->
@@ -152,38 +152,38 @@ Page content START -->
 				<!-- Course list END -->
 
 				<!-- Pagination START -->
-<div class="col-12">
-    @if ($courses->hasPages())
-        <nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
-            <ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+				<div class="col-12">
+					@if ($courses->hasPages())
+						<nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
+							<ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
 
-                {{-- قبلی --}}
-                <li class="page-item mb-0 {{ $courses->onFirstPage() ? 'disabled' : '' }}">
-                    <a class="page-link" href="{{ $courses->previousPageUrl() }}">
-                        <i class="fas fa-angle-double-right"></i>
-                    </a>
-                </li>
+								{{-- قبلی --}}
+								<li class="page-item mb-0 {{ $courses->onFirstPage() ? 'disabled' : '' }}">
+									<a class="page-link" href="{{ $courses->previousPageUrl() }}">
+										<i class="fas fa-angle-double-right"></i>
+									</a>
+								</li>
 
-                {{-- شماره صفحات --}}
-                @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
-                    <li class="page-item mb-0 {{ $page == $courses->currentPage() ? 'active' : '' }}">
-                        <a class="page-link" href="{{ $url }}">
-                            {{ $page }}
-                        </a>
-                    </li>
-                @endforeach
+								{{-- شماره صفحات --}}
+								@foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
+									<li class="page-item mb-0 {{ $page == $courses->currentPage() ? 'active' : '' }}">
+										<a class="page-link" href="{{ $url }}">
+											{{ $page }}
+										</a>
+									</li>
+								@endforeach
 
-                {{-- بعدی --}}
-                <li class="page-item mb-0 {{ !$courses->hasMorePages() ? 'disabled' : '' }}">
-                    <a class="page-link" href="{{ $courses->nextPageUrl() }}">
-                        <i class="fas fa-angle-double-left"></i>
-                    </a>
-                </li>
+								{{-- بعدی --}}
+								<li class="page-item mb-0 {{ !$courses->hasMorePages() ? 'disabled' : '' }}">
+									<a class="page-link" href="{{ $courses->nextPageUrl() }}">
+										<i class="fas fa-angle-double-left"></i>
+									</a>
+								</li>
 
-            </ul>
-        </nav>
-    @endif
-</div>
+							</ul>
+						</nav>
+					@endif
+				</div>
 				<!-- Pagination END -->
 			</div>
 			<!-- Main content END -->

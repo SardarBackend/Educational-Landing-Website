@@ -36,7 +36,7 @@ Main Banner START -->
 							</div>
 							<!-- Button -->
 							<div class="d-flex align-items-center mt-2 mt-md-0">
-								<a href="instructor-create-course.html" class="btn btn-success mb-0">افزودن دوره</a>
+								<a href="/instructor-CreateCourse" class="btn btn-success mb-0">افزودن دوره</a>
 							</div>
 						</div>
 					</div>

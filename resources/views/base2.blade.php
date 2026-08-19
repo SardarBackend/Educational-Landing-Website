@@ -83,6 +83,67 @@
 </style>
 
 
+<style>
+	.jv-footer,
+footer.bg-light {
+    background: linear-gradient(
+        135deg,
+        #050505 0%,
+        #151515 45%,
+        #2a2a2a 70%,
+        #080808 100%
+    ) !important;
+
+    color: #fff;
+}
+
+footer.bg-light .nav-link,
+footer.bg-light p,
+footer.bg-light h5,
+footer.bg-light .text-body {
+    color: #e5e5e5 !important;
+}
+
+footer.bg-light .nav-link:hover {
+    color: #fff !important;
+}
+
+footer.bg-light .text-primary-hover:hover {
+    color: #fff !important;
+}
+
+footer.bg-light hr {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+footer.bg-light .btn-white {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #fff !important;
+}
+
+footer.bg-light .btn-white:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+footer.bg-light .dropdown-toggle {
+    color: #e5e5e5 !important;
+}
+
+footer.bg-light .dropdown-menu {
+    background: #181818;
+}
+
+footer.bg-light .dropdown-item {
+    color: #e5e5e5;
+}
+
+footer.bg-light .dropdown-item:hover {
+    background: #2a2a2a;
+    color: #fff;
+}
+</style>
+
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="courses/assets/images/favicon.ico">
 
@@ -447,6 +508,7 @@
 @yield('content')
 <!-- =======================
 Footer START -->
+
 <footer class="bg-light pt-5">
 		<div class="container">
 		<!-- Row START -->
@@ -455,11 +517,14 @@ Footer START -->
 			<!-- Widget 1 START -->
 			<div class="col-lg-3">
 				<!-- logo -->
-				<a class="me-0" href="index-2.html">
-					<img class="light-mode-item h-40px" src="courses/assets/images/logo.svg" alt="logo">
-					<img class="dark-mode-item h-40px" src="courses/assets/images/logo-light.svg" alt="logo">
+				<a class="me-0" href="{{ route('index') }}">
+					<img class="light-mode-item h-40px" src="courses/assets/images/logo.svg" alt="مشیر رشد دانشجو معلم">
+					<img class="dark-mode-item h-40px" src="courses/assets/images/logo-light.svg" alt="مشیر رشد دانشجو معلم">
 				</a>
-				<p class="my-3">شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+				<p class="my-3">
+					مشیر رشد دانشجو معلم بستری برای یادگیری، رشد مهارت‌ها و توانمندسازی دانشجو معلمان
+					در مسیر پیشرفت علمی و حرفه‌ای است.
+				</p>
 				<!-- Social media icon -->
 				<ul class="list-inline mb-0 mt-3">
 					<li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
@@ -477,11 +542,11 @@ Footer START -->
 					<div class="col-6 col-md-4">
 						<h5 class="mb-2 mb-md-4">لینک های مفید</h5>
 						<ul class="nav flex-column">
-							<li class="nav-item"><a class="nav-link" href="#">درباره ما</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">تماس با ما</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">وبلاگ</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">تسویه حساب</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">سوالات متداول</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('index') }}">صفحه اصلی</a></li>
+							<li class="nav-item"><a class="nav-link" href="/about-us">درباره ما</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('blogs') }}">مقالات</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('faq') }}">سوالات متداول</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Achievements">دستاوردها</a></li>
 						</ul>
 					</div>
 									
@@ -489,10 +554,11 @@ Footer START -->
 					<div class="col-6 col-md-4">
 						<h5 class="mb-2 mb-md-4">راهنما و پشتیبانی</h5>
 						<ul class="nav flex-column">
-							<li class="nav-item"><a class="nav-link" href="#">داکیومنت</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">ارسال تیکت</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">خرید دوره</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">نقشه سایت</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('faq') }}">راهنما و سوالات متداول</a></li>
+							<li class="nav-item"><a class="nav-link" href="/course-list">دوره های آموزشی</a></li>
+							<li class="nav-item"><a class="nav-link" href="/episode-list">پادکست ها</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('books') }}">کتاب ها</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('cart') }}">سبد خرید</a></li>
 						</ul>
 					</div>
 
@@ -500,9 +566,11 @@ Footer START -->
 					<div class="col-6 col-md-4">
 						<h5 class="mb-2 mb-md-4">لینک های سریع</h5>
 						<ul class="nav flex-column">
-							<li class="nav-item"><a class="nav-link" href="#">جذب مدرس</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">مشاوره رایگان</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">شرایط و قوانین</a></li>
+							<li class="nav-item"><a class="nav-link" href="/way">مسیر رشد</a></li>
+							<li class="nav-item"><a class="nav-link" href="/instructor-list">مدرسین</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ورود به حساب کاربری</a></li>
+							<li class="nav-item"><a class="nav-link" href="/course-list">شروع یادگیری</a></li>
+							<li class="nav-item"><a class="nav-link" href="/about-us">ارتباط با ما</a></li>
 						</ul>
 					</div>
 				</div>
@@ -511,14 +579,14 @@ Footer START -->
 
 			<!-- Widget 3 START -->
 			<div class="col-lg-3">
-				<h5 class="mb-2 mb-md-4">تماس با ما</h5>
+				<h5 class="mb-2 mb-md-4">مشیر رشد دانشجو معلم</h5>
 				<!-- Time -->
 				<p class="mb-2">
-					تلفن: <span class="h6 fw-light ms-2">093200000000</span>
+					تلفن: <span style="color: #fff" class="h6 fw-light ms-2">093200000000</span>
 					<span class="d-block small">(9:00 تا 17:00 بعداز ظهر)</span>
 				</p>
 
-				<p class="mb-0">ایمیل:<span class="h6 fw-light ms-2">example@gmail.com</span></p>
+				<p  class="mb-0">ایمیل:<span style="color: #fff" class="h6 fw-light ms-2">example@gmail.com</span></p>
 
 				<div class="row g-2 mt-2">
 					<!-- Google play store button -->
@@ -542,7 +610,7 @@ Footer START -->
 			<div class="container px-0">
 				<div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
 					<!-- copyright text -->
-					<div class="text-primary-hover"> ارائه شده در سایت <a href="https://www.rtl-theme.com/" target="_blank" class="text-body">راست چین</a></div>
+					<div class="text-primary-hover">مشیر رشد دانشجو معلم</div>
 					<!-- copyright links-->
 					<div class="justify-content-center mt-3 mt-lg-0">
 						<ul class="nav list-inline justify-content-center mb-0">
@@ -554,13 +622,13 @@ Footer START -->
 									</a>
 									<ul class="dropdown-menu min-w-auto" aria-labelledby="languageSwitcher">
 										<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="courses/assets/images/flags/uk.svg" alt="">فارسی</a></li>
-										<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="courses/assets/images/flags/gr.svg" alt="">انگلیسی </a></li>
+										<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="courses/assets/images/flags/gr.svg" alt="">انگلیسی</a></li>
 										<li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="courses/assets/images/flags/sp.svg" alt="">فرانسوی</a></li>
 									</ul>
 								</div>
 							</li>
-							<li class="list-inline-item"><a class="nav-link" href="#">شرایط استفاده</a></li>
-							<li class="list-inline-item"><a class="nav-link pe-0" href="#">قوانین سایت</a></li>
+							<li class="list-inline-item"><a class="nav-link" href="{{ route('faq') }}">سوالات متداول</a></li>
+							<li class="list-inline-item"><a class="nav-link pe-0" href="/about-us">درباره ما</a></li>
 						</ul>
 					</div>
 				</div>
@@ -568,6 +636,7 @@ Footer START -->
 		</div>
 	</div>
 </footer>
+
 <!-- =======================
 Footer END -->
 					

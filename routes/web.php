@@ -78,8 +78,11 @@ Route::get('/cart',[\App\Http\Controllers\CartController::class,'Cart'])->name('
 Route::get('/instructor-dashboard', [InstructorController::class, 'dashboard'])
     ->name('instructor.dashboard');
 
-Route::get('/instructor-create-course', [InstructorController::class, 'createCourse'])
+Route::get('/instructor-CreateCourse', [InstructorController::class, 'createCourse'])
     ->name('instructor.create-course');
+
+Route::post('/instructor-CreateCourse', [InstructorController::class, 'storeCourse'])
+    ->name('storeCourse');
 
 Route::get('/instructor-delete-account', [InstructorController::class, 'deleteAccount'])
     ->name('instructor.delete-account');
